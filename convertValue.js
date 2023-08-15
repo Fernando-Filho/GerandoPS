@@ -49,4 +49,4 @@ function convertValue(parametro, tipoParametro) {
     }
   }
   
-  console.log(convertValue("20:3","Qtd. Horas"))
+  console.log(convertValue("20,3","Qtd. Horas"))
