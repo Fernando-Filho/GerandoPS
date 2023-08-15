@@ -1,32 +1,44 @@
 function convertValue(parametro, tipoParametro) {
 
-    let resultado = '';
+  let resultado = '';
   
-    if (tipoParametro == "Qtd. Horas") {
-      
-      let split = splitParametro(parametro);
-      let tratamentoParametro = parametro.split(split);
-      tratamentoParametro = tratamentoParametro.map(Number);
-      let tratamentoMinutos = tratamentoParametro[1];
-      tratamentoMinutos = tratamentoMinutos / 60;
-  
-      parametro = tratamentoParametro[0] + tratamentoMinutos;
-      parametro = parametro.toFixed(2);
-      console.log(`eu ${parametro}`)
-    }
-    
-    resultado = addZerosToSide(parametro, 10);
-  
-    return resultado;
-  
+  if (parametro == Math.floor(parametro)){
+    parametro = parametro + ".00"
   }
+  
+  parametro = String(parametro);
+  
+  let separar = splitParametro(parametro);
+  let tratamentoParametro = parametro.split(separar);
+  
+  if (tratamentoParametro[1].length < 2){
+    tratamentoParametro[1] = tratamentoParametro[1] + "0"
+  }
+  
+  if (tipoParametro == "Qtd. Horas") {
+    tratamentoParametro = tratamentoParametro.map(Number);
+    let tratamentoMinutos = tratamentoParametro[1] / 60;
+    parametro = tratamentoParametro[0] + tratamentoMinutos;
+    
+    parametro = parametro.toFixed(2);
+    console.log(parametro)
+  }
+  else{
+    parametro = `${tratamentoParametro[0]}.${tratamentoParametro[1]}`
+    console.log(parametro)
+  }
+
+  resultado = addZerosToSide(parametro, 10);
+
+  return resultado;
+
+}
   
   function addZerosToSide(parametro, tamanhoEsperado) {
 
-    let tamanhoParametro = parametro.length;
+    let tamanhoParametro = parametro.length -1;
     parametro = Number(parametro);
     parametro = parametro.toPrecision(tamanhoParametro);
-    console.log(`eu ${parametro}`)
 
     const zerosToAdd = tamanhoEsperado - parametro.length;
     const zeros = "0".repeat(zerosToAdd);
@@ -48,5 +60,3 @@ function convertValue(parametro, tipoParametro) {
       }
     }
   }
-  
-  console.log(convertValue("20,3","Qtd. Horas"))
