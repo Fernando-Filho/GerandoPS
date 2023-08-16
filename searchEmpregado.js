@@ -1,14 +1,14 @@
-function searchEmpregado(parametro) {
+function searchEmpregado(cell) {
 
-    const planilha = SpreadsheetApp.getActiveSpreadsheet();
-    let pagEmpregados = planilha.getSheetByName("Empregados");
-    let listNameEmpregados = pagEmpregados.getRange("B:B").getValues();
-    let listCodEmpregados = pagEmpregados.getRange("A:A").getValues();
-  
-    for (i = 0; i <= listNameEmpregados.length; i++) {
-      if (parametro == listNameEmpregados[i]) {
-        return listCodEmpregados[i]
-      }
+  const sheet = SpreadsheetApp.getActiveSpreadsheet();
+  const employeePage = sheet.getSheetByName("Empregados");
+  const listEmployeeName = employeePage.getRange("B:B").getValues();
+  const listEmployeeCodes = employeePage.getRange("A:A").getValues();
+
+  for (i = 0; i <= listEmployeeName.length; i++) {
+    if (cell == listEmployeeName[i]) {
+      return listEmployeeCodes[i]
     }
-    return 'O empregado não foi encontrado, por favor atualize sua lista de empregados!';
+  }
+  return 'O empregado não foi encontrado, por favor atualize sua lista de empregados!';
 }
