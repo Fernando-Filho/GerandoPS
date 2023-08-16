@@ -60,3 +60,5 @@ function convertValue(parametro, tipoParametro) {
       }
     }
   }
+
+  console.log(convertValue(".1","Valor"))
