@@ -1,33 +1,33 @@
 function searchCompany() {
 
-  const planilha = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = SpreadsheetApp.getActiveSpreadsheet();
   
-  const parametro = planilha.getSheetByName("Lancamentos").getRange("A1:A2").getValue();
+  const cell = sheet.getSheetByName("Lancamentos").getRange("A1:A2").getValue();
 
-  const tamanhoEsperado = planilha.getSheetByName("LayoutHeader").getRange("B6").getValue();
+  const expectedSize = sheet.getSheetByName("LayoutHeader").getRange("B6").getValue();
 
-  let pagEmpresas = planilha.getSheetByName("Empresas");
-  let listNameEmpresas = pagEmpresas.getRange("B:B").getValues();
-  let listCodEmpresas = pagEmpresas.getRange("A:A").getValues();
+  let companyPage = sheet.getSheetByName("Empresas");
+  let listCompanyName = companyPage.getRange("B:B").getValues();
+  let listCompanyCodes = companyPage.getRange("A:A").getValues();
 
-  let resultado = searchCodCompany(parametro, listNameEmpresas, listCodEmpresas);
+  let result = searchCodCompany(cell, listCompanyName, listCompanyCodes);
 
-  if (resultado.length < tamanhoEsperado) {
+  if (result.length < expectedSize) {
 
-    const zerosToAdd = tamanhoEsperado - resultado.length;
-    const complementoCelula = "0".repeat(zerosToAdd);
+    const zerosToAdd = expectedSize - result.length;
+    const complementCell = "0".repeat(zerosToAdd);
 
-    resultado = complementoCelula + resultado;
+    result = complementCell + result;
   }
 
-  return resultado;
+  return result;
 
-  function searchCodCompany(parametro, listNameEmpresas, listCodEmpresas){
+  function searchCodCompany(cell, listCompanyName, listCompanyCodes){
 
-    for (let i = 0; i < listNameEmpresas.length; i++) {
+    for (let i = 0; i < listCompanyName.length; i++) {
 
-      if (parametro == listNameEmpresas[i]) {
-        return listCodEmpresas[i];
+      if (cell == listCompanyName[i]) {
+        return listCompanyCodes[i];
       }
     }
     return 'A sua empresa não foi encontrada, por favor atualize sua lista de empresas!';
