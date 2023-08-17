@@ -1,64 +1,64 @@
-function convertValue(parametro, tipoParametro) {
+function convertValue(cell, typeCell) {
 
-  let resultado = '';
+  let result = '';
   
-  if (parametro == Math.floor(parametro)){
-    parametro = parametro + ".00"
+  if (cell == Math.floor(cell)){
+    cell = cell + ".00"
   }
   
-  parametro = String(parametro);
+  cell = String(cell);
   
-  let separar = splitParametro(parametro);
-  let tratamentoParametro = parametro.split(separar);
+  let toSplit = splitcell(cell);
+  let cellTreatment = cell.split(toSplit);
   
-  if (tratamentoParametro[1].length < 2){
-    tratamentoParametro[1] = tratamentoParametro[1] + "0"
+  if (cellTreatment[1].length < 2){
+    cellTreatment[1] = cellTreatment[1] + "0"
   }
   
-  if (tipoParametro == "Qtd. Horas") {
-    tratamentoParametro = tratamentoParametro.map(Number);
-    let tratamentoMinutos = tratamentoParametro[1] / 60;
-    parametro = tratamentoParametro[0] + tratamentoMinutos;
+  if (typeCell == "Qtd. Horas") {
+    cellTreatment = cellTreatment.map(Number);
+    let minutesTreatment = cellTreatment[1] / 60;
+    cell = cellTreatment[0] + minutesTreatment;
     
-    parametro = parametro.toFixed(2);
-    console.log(parametro)
+    cell = cell.toFixed(2);
+    console.log(cell)
   }
   else{
-    parametro = `${tratamentoParametro[0]}.${tratamentoParametro[1]}`
-    console.log(parametro)
+    cell = `${cellTreatment[0]}.${cellTreatment[1]}`
+    console.log(cell)
   }
 
-  resultado = addZerosToSide(parametro, 10);
+  result = addZerosToSide(cell, 10);
 
-  return resultado;
+  return result;
 
 }
   
-  function addZerosToSide(parametro, tamanhoEsperado) {
+  function addZerosToSide(cell, tamanhoEsperado) {
 
-    let tamanhoParametro = parametro.length -1;
-    parametro = Number(parametro);
-    parametro = parametro.toPrecision(tamanhoParametro);
+    let tamanhocell = cell.length -1;
+    cell = Number(cell);
+    cell = cell.toPrecision(tamanhocell);
 
-    const zerosToAdd = tamanhoEsperado - parametro.length;
+    const zerosToAdd = tamanhoEsperado - cell.length;
     const zeros = "0".repeat(zerosToAdd);
   
-    let resultado = zeros + parametro;
-    return resultado;
+    let result = zeros + cell;
+    return result;
   
     }
   
-  function splitParametro(parametro) {
+  function splitcell(cell) {
     
-    let parametroSeparado = parametro.split("");
+    let separateCell = cell.split("");
     
-    for(let i = 0; i <= parametroSeparado.length; i++) {
+    for(let i = 0; i <= separateCell.length; i++) {
       
-      if (parametroSeparado[i] === "." || parametroSeparado[i] === "," || parametroSeparado[i] === ";" || parametroSeparado[i] === ":") {
-        return parametroSeparado[i];
+      if (separateCell[i] === "." || separateCell[i] === "," || separateCell[i] === ";" || separateCell[i] === ":") {
+        return separateCell[i];
       
       }
     }
   }
 
-  console.log(convertValue(".1","Valor"))
+  console.log(convertValue(".1","Qtd. Horas"))
