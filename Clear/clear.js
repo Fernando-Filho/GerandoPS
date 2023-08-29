@@ -3,10 +3,11 @@ function clear() {
     limparLancamentos(sheet);
     limparConversao(sheet);
     limparLayoutPS(sheet);
-  }
-  
+}
+
 function limparLancamentos(sheet) {
-sheet.getSheetByName("Lancamentos").getRange("1:1000").clear();
+sheet.getSheetByName("Lancamentos").getRange("B1:AA2").clear();
+sheet.getSheetByName("Lancamentos").getRange("3:1000").clear();
 }
 
 function limparConversao(sheet) {
