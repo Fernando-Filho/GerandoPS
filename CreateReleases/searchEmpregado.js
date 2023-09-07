@@ -6,8 +6,9 @@ function searchEmpregado(cell) {
   const listEmployeeCodes = employeePage.getRange("A:A").getValues();
 
   for (i = 0; i <= listEmployeeName.length; i++) {
+
     if (cell == listEmployeeName[i]) {
-      return listEmployeeCodes[i]
+        return listEmployeeCodes[i]
     }
   }
   return 'O empregado não foi encontrado, por favor atualize sua lista de empregados!';
