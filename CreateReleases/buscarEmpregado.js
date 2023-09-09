@@ -1,11 +1,9 @@
 function buscarEmpregado(celula) {
 
-  const planilha = SpreadsheetApp.getActiveSpreadsheet();
-  const paginaEmpregado = planilha.getSheetByName("Empregados");
-  const listaNomesEmprgados = paginaEmpregado.getRange("B:B").getValues();
-  const listaCodigosEmprgados = paginaEmpregado.getRange("A:A").getValues();
+  const listaNomesEmprgados = pagina("Empregados").getRange("B:B").getValues();
+  const listaCodigosEmprgados = pagina("Empregados").getRange("A:A").getValues();
 
-  for (i = 0; i <= listEmployeeName.length; i++) {
+  for (i = 0; i <= listaNomesEmprgados.length; i++) {
 
     if (celula == listaNomesEmprgados[i]) {
         return listaCodigosEmprgados[i]

@@ -1,12 +1,9 @@
-function buscarEmpresa(planilha) {
+function buscarEmpresa() {
   
-  const empresaDeseja = planilha.getSheetByName("Lancamentos").getRange("A1:A2").getValue();
-
-  const tamanhoEsperado = planilha.getSheetByName("LayoutHeader").getRange("B6").getValue();
-
-  let paginaEmpresas = planilha.getSheetByName("Empresas");
-  let listaNomesEmpresas = paginaEmpresas.getRange("B:B").getValues();
-  let listaCodigosEmpresas = paginaEmpresas.getRange("A:A").getValues();
+  const empresaDeseja = pagina("Lancamentos").getRange("A1:A2").getValue();
+  const tamanhoEsperado = pagina("LayoutHeader").getRange("B6").getValue();
+  const listaNomesEmpresas = pagina("Empresas").getRange("B:B").getValues();
+  const listaCodigosEmpresas = pagina("Empresas").getRange("A:A").getValues();
 
   let resultado = buscarCodigoEmpresa(empresaDeseja, listaNomesEmpresas, listaCodigosEmpresas);
 
