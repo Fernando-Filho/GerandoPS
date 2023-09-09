@@ -2,8 +2,9 @@ function buscarEmpresa() {
   
   const empresaDeseja = pagina("Lancamentos").getRange("A1:A2").getValue();
   const tamanhoEsperado = pagina("LayoutHeader").getRange("B6").getValue();
-  const listaNomesEmpresas = pagina("Empresas").getRange("B:B").getValues();
-  const listaCodigosEmpresas = pagina("Empresas").getRange("A:A").getValues();
+  const ultimaLinha = pagina("Empresas").getLastRow();
+  const listaCodigosEmpresas = pagina("Empresas").getRange(1, 1, ultimaLinha, 1).getValues();
+  const listaNomesEmpresas = pagina("Empresas").getRange(1, 2, ultimaLinha, 1).getValues();
 
   let resultado = buscarCodigoEmpresa(empresaDeseja, listaNomesEmpresas, listaCodigosEmpresas);
 
