@@ -20,7 +20,7 @@ function setMovimentacoes() {
       if ( lancamentosDados[i][c] != 0) {
         
         pagina("Conversao").getRange(linha, 2).setValue(buscarEmpregado(lancamentosDados[i][0]));
-        pagina("Conversao").getRange(linha, 3).setValue(searchEventCodes(eventosDados[evento][0]));
+        pagina("Conversao").getRange(linha, 3).setValue(eventosDados[evento][0]);
         pagina("Conversao").getRange(linha, 4).setValue(converterValor(lancamentosDados[i][c],eventosDados[evento][1]));
         pagina("Conversao").getRange(linha, 5).setValue(converterValor(0,"Valor"));
         
