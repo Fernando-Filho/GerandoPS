@@ -20,7 +20,7 @@ function buscarEmpresa() {
 
   function buscarCodigoEmpresa(empresaDeseja, listaNomesEmpresas, listaCodigosEmpresas){
 
-    for (let i = 0; i < listCompanyName.length; i++) {
+    for (let i = 0; i < listaNomesEmpresas.length; i++) {
 
       if (empresaDeseja == listaNomesEmpresas[i]) {
         return listaCodigosEmpresas[i];
