@@ -6,7 +6,7 @@ function buscarEmpresa() {
 
   for (const empresaAnalisada of matrizEmpresa)  {
     if(empresaAnalisada[1] === empresaDeseja) {
-      return empresaAnalisada[0]
+      return empresaAnalisada[0];
     }
   }
   return Browser.msgBox("Infelizmente não encontramos sua empresa, por favor verifique os lançamentos novamente!!!");
