@@ -1,31 +1,13 @@
 function buscarEmpresa() {
   
   const empresaDeseja = pagina("Lancamentos").getRange("A1:A2").getValue();
-  const tamanhoEsperado = pagina("LayoutHeader").getRange("B6").getValue();
   const ultimaLinha = pagina("Empresas").getLastRow();
-  const listaCodigosEmpresas = pagina("Empresas").getRange(1, 1, ultimaLinha, 1).getValues();
-  const listaNomesEmpresas = pagina("Empresas").getRange(1, 2, ultimaLinha, 1).getValues();
+  const matrizEmpresa = pagina("Empresas").getRange(1, 1, ultimaLinha, 2).getValues();
 
-  let resultado = buscarCodigoEmpresa(empresaDeseja, listaNomesEmpresas, listaCodigosEmpresas);
-
-  if (resultado.length < tamanhoEsperado) {
-
-    const adcionarZeros = tamanhoEsperado - resultado.length;
-    const complementoCelula = "0".repeat(adcionarZeros);
-
-    resultado = complementoCelula + resultado;
-  }
-
-  return resultado;
-
-  function buscarCodigoEmpresa(empresaDeseja, listaNomesEmpresas, listaCodigosEmpresas){
-
-    for (let i = 0; i < listaNomesEmpresas.length; i++) {
-
-      if (empresaDeseja == listaNomesEmpresas[i]) {
-        return listaCodigosEmpresas[i];
-      }
+  for (const empresaAnalisada of matrizEmpresa)  {
+    if(empresaAnalisada[1] === empresaDeseja) {
+      return empresaAnalisada[0]
     }
-    return 'A sua empresa não foi encontrada, por favor atualize sua lista de empresas!';
   }
+  return Browser.msgBox("Infelizmente não encontramos sua empresa, por favor verifique os lançamentos novamente!!!");
 }

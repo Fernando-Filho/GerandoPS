@@ -26,10 +26,17 @@ function cadastrarEmpregado() {
         if(i === matrizEmpregado.length) {
           for(let c = 0; c <= matrizEmpresa.length; c++) {
             if(c === matrizEmpresa.length)  {
+              
               let newEmpresa = Browser.inputBox(`Não encontramos a empresa com o código ${empregadoACadastrar[2]}`, "Caso deseje cadastrar como uma nova empresa, digite seu nome:", Browser.Buttons.OK_CANCEL);
               if(newEmpresa == "cancel") {
                 return;
               }else{
+                const tamanaoEmpresaEsperado = pagina("LayoutHeader").getRange("B6").getValue();
+                if(empregadoACadastrar[2] != tamanaoEmpresaEsperado)  {
+                  empregadoACadastrar[2] = Browser.inputBox(`Lembre que o código da empresa precisa ter ${tamanaoEmpresaEsperado} digitos!`, "Por favor digite de acordo", Browser.Buttons.OK_CANCEL);
+                  if(newEmpresa == "cancel") {
+                    return;
+                }
                 pagina("Empresas").getRange((ultimaLinhaEmpresas + 1),1).setValue(empregadoACadastrar[2]);
                 pagina("Empresas").getRange((ultimaLinhaEmpresas + 1),2).setValue(newEmpresa);
               }
@@ -37,17 +44,17 @@ function cadastrarEmpregado() {
               ultimaLinhaEmpregado ++
               continue firstLoop;
             }
-            if(empregadoACadastrar[2] === matrizEmpresa[c][0])  {
-              realizarCadastroEmpregado(empregadoACadastrar, ultimaLinhaEmpregado);
-              ultimaLinhaEmpregado ++
-              continue firstLoop;
-            }
+          }
+          if(empregadoACadastrar[2] === matrizEmpresa[c][0])  {
+            realizarCadastroEmpregado(empregadoACadastrar, ultimaLinhaEmpregado);
+            ultimaLinhaEmpregado ++
+            continue firstLoop;
           }
         }
       }
     }
   }
-  
+}
   function realizarCadastroEmpregado(empregadoACadastrar, ultimaLinhaEmpregado) {
     pagina("Empregados").getRange((ultimaLinhaEmpregado + 1),1).setValue(empregadoACadastrar[0]);
     pagina("Empregados").getRange((ultimaLinhaEmpregado + 1),2).setValue(empregadoACadastrar[1]);
